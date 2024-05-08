@@ -2,12 +2,13 @@ import pygame
 pygame.init()
 game_screen = pygame.display.set_mode((736,736))
 
-background = pygame.image.load('space.png')
 
 pygame.init()
 pygame.font.init()
 my_font = pygame.font.SysFont('Comic Sans', 12)
 pygame.display.set_caption("Space Invaders: Beginner Edition")
+background = pygame.image.load('space.png')
+
 
 run = True
 while run:
