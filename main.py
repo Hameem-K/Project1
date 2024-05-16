@@ -7,8 +7,8 @@ pygame.font.init()
 my_font = pygame.font.SysFont('Comic Sans', 12)
 pygame.display.set_caption("Space Invaders: Beginner Edition")
 background = pygame.image.load('space.png')
-
 player = Player(736, 368)
+
 
 start = False
 end = False
@@ -20,10 +20,14 @@ while run:
         if event.type == pygame.QUIT:
             run = False
     pygame.display.update()
+else:
+    start == True
 
-    if start == True:
+    if start:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_d]:
             player.move_direction("right")
         if keys[pygame.K_a]:
             player.move_direction("left")
+            game_screen.blit(player.image, player.rect)
+
