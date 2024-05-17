@@ -2,12 +2,12 @@ import pygame
 from player import Player
 
 pygame.init()
-game_screen = pygame.display.set_mode((736,736))
+game_screen = pygame.display.set_mode((1000,1000))
 pygame.font.init()
 my_font = pygame.font.SysFont('Comic Sans', 12)
 pygame.display.set_caption("Space Wars")
 background = pygame.image.load('space.png')
-player = Player(270, 510)
+player = Player(375, 787)
 
 run = True
 
