@@ -1,28 +1,33 @@
 import pygame
+from player import Player
+from enemy import Enemy
 
-class Player:
+pygame.init()
+game_screen = pygame.display.set_mode((1000, 1000))
+pygame.font.init()
+my_font = pygame.font.SysFont('Comic Sans', 12)
+pygame.display.set_caption("Space Wars")
+background = pygame.image.load('background.png')
+player = Player(450, 900)
+enemy = Enemy(450, 0)
 
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.image = pygame.image.load('player_sprite.png')
-        self.image_size = self.image.get_size()
-        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 1
-        self.current_direction = "right"
+run = True
 
-    def move_direction(self, direction):
-        if direction == "right" and self.current_direction != "right":
-            self.image = pygame.transform.flip(self.image, True, False)
-            self.current_direction = "right"
-        elif direction == "left" and self.current_direction != "left":
-            self.image = pygame.transform.flip(self.image, True, False)
-            self.current_direction = "left"
-        if self.current_direction == "right":
-            self.x += self.delta
-        elif self.current_direction == "left":
-            self.x -= self.delta
-        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+while run:
+    game_screen.blit(background, (0, 0))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_d]:
+        player.move_direction("right")
+    if keys[pygame.K_a]:
+        player.move_direction("left")
 
+    enemy.move()
 
+    game_screen.blit(player.image, player.rect)
+    game_screen.blit(enemy.image, enemy.rect)
+
+    pygame.display.update()
