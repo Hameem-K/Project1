@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from enemy import Enemy
+from laser import Laser
 
 pygame.init()
 game_screen = pygame.display.set_mode((1000, 1000))
@@ -27,9 +28,9 @@ def intro_screen():
                 if event.key == pygame.K_SPACE:
                     intro = False
         game_screen.blit(background, (0, 0))
-        intro_msg = my_font.render("Press the spacebar to start, A to go left, and D to go right", True,
+        intro_msg = my_font.render("Press the spacebar to start, A to go left, and D to go right (or use the arrow keys)", True,
                                    (255, 255, 255))
-        game_screen.blit(intro_msg, (235, 500))
+        game_screen.blit(intro_msg, (126, 500))
         pygame.display.update()
 
 
@@ -42,9 +43,9 @@ while run:
             run = False
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_d]:
+    if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
         player.move_direction("right")
-    if keys[pygame.K_a]:
+    if keys[pygame.K_a] or keys[pygame.K_LEFT]:
         player.move_direction("left")
 
     enemy.move()
