@@ -9,11 +9,11 @@ class Player:
         self.image = pygame.image.load('player_sprite.png')
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 4
+        self.delta = 5
         self.current_direction = "right"
         self.lasers = []
         self.last_shot_time = 0
-        self.shot_delay = 1500
+        self.shot_delay = 400
 
     def move_direction(self, direction):
         if direction == "right" and self.current_direction != "right":
@@ -31,8 +31,11 @@ class Player:
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
     def shooting_mech(self):
-        laser = Laser(self.x + self.image_size[0] // 2, self.y, (0, 0, 255), "up")
-        self.lasers.append(laser)
+        current_time = pygame.time.get_ticks()
+        if current_time - self.last_shot_time > self.shot_delay:
+            laser = Laser(self.x + self.image_size[0] // 2, self.y, (0, 0, 255), "up")
+            self.lasers.append(laser)
+            self.last_shot_time = current_time
 
     def draw_lasers(self, game_screen):
         for laser in self.lasers:
