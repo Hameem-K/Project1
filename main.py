@@ -12,8 +12,10 @@ background = pygame.image.load('background.png')
 player = Player(450, 900)
 enemy = Enemy(500, 0)
 enemy2 = Enemy(200, 0)
+enemy3 = Enemy(800, 0)
 
 run = True
+player_shooting = False
 
 
 def intro_screen():
@@ -27,10 +29,10 @@ def intro_screen():
                     intro = False
         game_screen.blit(background, (0, 0))
         intro_msg = my_font.render(
-            "Press the spacebar to start, A to go left, D to go right (or use the arrow keys) and up arrow key to shoot",
+            "Press the spacebar to start, A to go left, D to go right (or the respective arrow keys) and UP to shoot",
             True,
             (255, 255, 255))
-        game_screen.blit(intro_msg, (35, 0))
+        game_screen.blit(intro_msg, (45, 0))
         pygame.display.update()
 
 
@@ -41,6 +43,9 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                player_shooting = not player_shooting
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
@@ -48,11 +53,30 @@ while run:
     if keys[pygame.K_a] or keys[pygame.K_LEFT]:
         player.move_direction("left")
 
+    if player_shooting:
+        player.shooting_mech()
+
     enemy.move()
     enemy2.move()
+    enemy3.move()
+
+    enemy.shooting_mech()
+    enemy2.shooting_mech()
+    enemy3.shooting_mech()
+
+    player.move_lasers()
+    enemy.move_lasers()
+    enemy2.move_lasers()
+    enemy3.move_lasers()
+
+    player.draw_lasers(game_screen)
+    enemy.draw_lasers(game_screen)
+    enemy2.draw_lasers(game_screen)
+    enemy3.draw_lasers(game_screen)
 
     game_screen.blit(player.image, player.rect)
     game_screen.blit(enemy.image, enemy.rect)
     game_screen.blit(enemy2.image, enemy2.rect)
+    game_screen.blit(enemy3.image, enemy3.rect)
 
     pygame.display.update()
