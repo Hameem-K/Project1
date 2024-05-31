@@ -42,7 +42,7 @@ class Player:
             laser.draw(game_screen)
 
     def move_lasers(self):
-        for laser in self.lasers:
+        for laser in self.lasers[:]:
             laser.move()
             if laser.y < 0:
                 self.lasers.remove(laser)
