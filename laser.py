@@ -7,10 +7,10 @@ class Laser:
         self.y = y
         self.color = color
         self.direction = direction
-        self.image = pygame.Surface((10, 20))
+        self.image = pygame.Surface((5, 20))
         self.image.fill(self.color)
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
-        self.speed = -7 if self.direction == "up" else 7
+        self.speed = -9 if self.direction == "up" else 8
 
     def move(self):
         self.y += self.speed
