@@ -9,11 +9,11 @@ class Enemy:
         self.image = pygame.image.load('enemy_sprite.png')
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 5
+        self.delta = 8
         self.direction = "right"
         self.lasers = []
         self.last_shot_time = 0
-        self.shot_delay = 300
+        self.shot_delay = 250
 
     def move(self):
         if self.direction == "right":
