@@ -2,16 +2,14 @@ import pygame
 from enemy import Enemy
 from player import Player
 
-
 pygame.init()
 game_screen = pygame.display.set_mode((1000, 1000))
 pygame.font.init()
-my_font = pygame.font.SysFont('Comic Sans MS', 19)
+my_font = pygame.font.SysFont('Comic Sans', 19)
 pygame.display.set_caption("Space Wars")
 background = pygame.image.load('background.png')
 player = Player(450, 900)
 enemy = Enemy(450, 0)
-
 
 run = True
 player_shooting = False
@@ -94,7 +92,8 @@ while run:
     game_screen.blit(player.image, player.rect)
 
     if game_over:
-        game_over_msg = my_font.render("You lose! Press SPACE to restart or press the RED BUTTON on the top left to quit", True, (255, 0, 0))
+        game_over_msg = my_font.render(
+            "You lose! Press SPACE to restart or press the RED BUTTON on the top left to quit", True, (255, 0, 0))
         game_screen.blit(game_over_msg, (150, 500))
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
@@ -105,7 +104,8 @@ while run:
             win = False
 
     if win:
-        win_msg = my_font.render("You win! Press SPACE to restart or press the RED BUTTON on the top left to quit", True, (0, 255, 0))
+        win_msg = my_font.render("You win! Press SPACE to restart or press the RED BUTTON on the top left to quit",
+                                 True, (0, 255, 0))
         game_screen.blit(win_msg, (150, 500))
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
