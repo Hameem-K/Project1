@@ -9,7 +9,7 @@ class Player:
         self.image = pygame.image.load('player_sprite.png')
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 5
+        self.delta = 4
         self.current_direction = "right"
         self.lasers = []
         self.last_shot_time = 0
