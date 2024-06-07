@@ -9,7 +9,7 @@ class Enemy:
         self.image = pygame.image.load('enemy_sprite.png')
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 8
+        self.delta = 5
         self.direction = "right"
         self.lasers = []
         self.last_shot_time = 0
